@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: github-demo-run
+spec:
+  pipelineRef:
+    name: github-demo-pipeline
+  params:
+    - name: repo-url
+      value: https://github.com/vpnvks/Openshift-Git-Intg.git
+  workspaces:
+    - name: shared-data
+      volumeClaimTemplate:
+        metadata:
+          name: shared-pvc
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 1Gi
