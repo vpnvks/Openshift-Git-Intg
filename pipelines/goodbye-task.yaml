@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: goodbye-task
+spec:
+  steps:
+    - name: print
+      image: registry.access.redhat.com/ubi8/ubi-minimal
+      script: |
+        #!/bin/sh
+        echo "Goodbye from the second task!"
