@@ -4,7 +4,7 @@ metadata:
   name: github-demo-run
 spec:
   pipelineRef:
-    name: github-demo-pipeline
+    name: github-demo-pipeline-v1
   params:
     - name: repo-url
       value: https://github.com/vpnvks/Openshift-Git-Intg.git
