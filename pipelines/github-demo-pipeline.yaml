@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
-  name: github-demo-pipeline
+  name: github-demo-pipeline-v1
 spec:
   params:
     - name: repo-url
@@ -11,7 +11,7 @@ spec:
   tasks:
     - name: clone-repo
       taskRef:
-        name: git-clone
+        name: git-clone-v1
       workspaces:
         - name: output
           workspace: shared-data
@@ -25,11 +25,11 @@ spec:
       runAfter:
         - clone-repo
       taskRef:
-        name: hello-task        # <-- doesn't use a workspace now
+        name: hello-task-v1        # <-- doesn't use a workspace now
       # (removed the workspace mapping)
 
     - name: say-goodbye
       runAfter:
         - say-hello
       taskRef:
-        name: goodbye-task
+        name: goodbye-task-v1
