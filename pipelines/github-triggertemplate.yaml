@@ -1,0 +1,22 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-triggertemplate
+spec:
+  params:
+    - name: gitrepositoryurl
+    - name: gitrevision
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: github-demo-pipeline-run-
+      spec:
+        pipelineRef:
+          name: github-demo-pipeline     # Must match your pipeline name
+        params:
+          - name: repo-url
+            value: $(tt.params.gitrepositoryurl)
+          - name: revision
+            value: $(tt.params.gitrevision)
+        serviceAccountName: pipeline
