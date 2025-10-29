@@ -1,2 +1,3 @@
 Hello from GitHub Repository!
 Hi again.
+new line.
